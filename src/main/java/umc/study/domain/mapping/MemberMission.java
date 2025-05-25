@@ -6,6 +6,7 @@ import umc.study.domain.Member;
 import umc.study.domain.Mission;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.MissionStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -23,9 +24,11 @@ public class MemberMission extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
+    @JsonIgnore
     private Member member;
 
     @ManyToOne
     @JoinColumn(name = "mission_id")
+    @JsonIgnore
     private Mission mission;  // ← 이게 꼭 필요!
 }

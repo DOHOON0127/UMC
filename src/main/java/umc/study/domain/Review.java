@@ -3,6 +3,7 @@ package umc.study.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +25,16 @@ public class Review extends BaseEntity {
     private Float score;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "store_id")
     private Store store;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ReviewImage> reviewImageList = new ArrayList<>();
 }
